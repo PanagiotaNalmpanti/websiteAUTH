@@ -1,3 +1,38 @@
-/* BEGIN CODE HERE */
+/*.header {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+*/
+.logo {
+    height: 58px;
+    max-height: 250px;
+}
 
-/* END CODE HERE */
+#blueButton{
+    color:#0d6efd;
+}
+
+.navbar{
+    background: #9fc4ff;
+}
+
+.container{
+    width: 1200px;
+}
+
+label {
+    text-align: left;
+    width: 150px;
+    display: inline-block;
+}
+
+#searchBtn{
+    text-align: center;
+    width: 100px;
+    display: inline-block;
+    color: white;
+    background:#0d6efd;
+}
