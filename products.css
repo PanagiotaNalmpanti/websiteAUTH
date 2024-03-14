@@ -36,3 +36,22 @@ label {
     color: white;
     background:#0d6efd;
 }
+#saveBtn{
+    position: absolute;
+    text-align: center;
+    width: 75px;
+    display: inline-block;
+    color: white;
+    background:#0d6efd;
+    right: 0;
+
+}
+footer {
+    height: 100px; /* Ορίζει το ύψος του footer σε 100px */
+    background-color:white; ; /* Χρώμα φόντου του footer */
+    text-align: center; /* Κείμενο στο κέντρο του footer */
+    line-height: 100px; /* Κείμενο να είναι κατά μέσο ύψος του footer */
+    font-family: Arial /* Ορίζει τη γραμματοσειρά σε Arial */
+    font-style: italic; /* Κάνει το κείμενο πλάγιο */
+    font-size:1em
+}
