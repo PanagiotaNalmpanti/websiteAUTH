@@ -1,3 +1,168 @@
 /* BEGIN CODE HERE */
+header {
+	font-family: Arial;
+	overflow: hidden;
+	background-color: white;
+	height: 150px;
+	padding: 48px;
+}
 
+
+header img {
+	height: 58px;
+	width: 250px;
+}
+
+
+header a {
+	float: left;
+	color: blue;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 25px;
+	border-radius: 4px;
+}
+
+
+.book-button {
+	padding: 5px 10px;
+	border-radius: 10px;
+	border: none;
+	background-color: white; 
+	color: blue
+}
+
+.book-button:hover,
+.book-button:active {
+	background-color: blue; /* Χρώμα κουμπιού όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
+	color: white; /* Χρώμα κειμένου όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
+}
+
+.book-button a {
+	color: inherit; /* Κληρονόμηση χρώματος από τον παράγοντα .book-button */
+	text-decoration: none; /* Απενεργοποίηση υπογράμμισης για τον υπερσύνδεσμο */
+}
+
+.book-button a:hover,
+.book-button a:active {
+	color: white; /* Χρώμα υπερσυνδέσμου όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
+}
+
+.header-right {
+	float: right;
+	display: flex;
+	align-items: center;
+}
+
+
+.container1 {
+    display: flex;
+    flex-direction: column; /* Αλλαγή της κατεύθυνσης σε κατακόρυφη */
+    align-items: center;
+    height: auto;
+}
+
+.frame1 {
+    width: 1200px;
+    height: 400px;
+	margin: 10px;
+}
+
+.section1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.article1 {
+    padding: 0px;
+    margin: 0px;
+    background: white;
+    flex:  1 /* Παίρνει το μισό του πλάτους της γραμμής */
+}	
+
+
+.article1 img {
+  width: 600px;
+  height: 400px;
+}
+
+.frame2 {
+    width: 1200px;
+    height: 400px;
+	margin: 10px;
+}
+
+.container2 {
+    display: flex;
+}
+
+.article2{
+    padding: 0px;
+    margin: 0px;
+    background: white;
+    width: 300px;
+}	
+
+.section2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+.article2 img {
+	width: 300px;
+	height: 200px;
+}
+
+
+.article3 {
+    position: relative; /* Απαιτείται για να λειτουργήσει το position: absolute; */
+	width: 300px;
+	height:200px;
+}
+
+.article3 p {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.article4 {
+    position: relative; /* Απαιτείται για να λειτουργήσει το position: absolute; */
+	width: 300px;
+	height:200px;
+}
+
+.article4 p {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.frame3 {
+    width: 1200px;
+    height: 600px;
+	margin: 10px;
+}
+
+iframe {
+    width: 1200px;
+    height: 600px;
+    border: none; /* Αφαιρεί τα περιθώρια του iframe */
+	
+}
+
+footer {
+    height: 100px; /* Ορίζει το ύψος του footer σε 100px */
+    background-color:#f2f2f2; ; /* Χρώμα φόντου του footer */
+    text-align: center; /* Κείμενο στο κέντρο του footer */
+    line-height: 100px; /* Κείμενο να είναι κατά μέσο ύψος του footer */
+	font-family: Arial /* Ορίζει τη γραμματοσειρά σε Arial */ 
+	font-style: italic; /* Κάνει το κείμενο πλάγιο */
+	font-size:1.5em
+}
 /* END CODE HERE */
