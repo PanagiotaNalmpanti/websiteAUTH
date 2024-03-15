@@ -11,12 +11,13 @@ header {
 header img {
 	height: 58px;
 	width: 250px;
+    margin-left: 100px;
 }
 
 
 header a {
 	float: left;
-	color: blue;
+	/*color: blue;*/
 	text-align: center;
 	padding: 12px;
 	text-decoration: none;
@@ -31,12 +32,12 @@ header a {
 	border-radius: 10px;
 	border: none;
 	background-color: white; 
-	color: blue
+	color: #0296f1
 }
 
 .book-button:hover,
 .book-button:active {
-	background-color: blue; /* Χρώμα κουμπιού όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
+	background-color: #0296f1; /* Χρώμα κουμπιού όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
 	color: white; /* Χρώμα κειμένου όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
 }
 
@@ -54,6 +55,7 @@ header a {
 	float: right;
 	display: flex;
 	align-items: center;
+    margin-right: 100px;
 }
 
 
@@ -77,8 +79,8 @@ header a {
 }
 
 .article1 {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     background: white;
     flex:  1 /* Παίρνει το μισό του πλάτους της γραμμής */
 }	
@@ -100,8 +102,8 @@ header a {
 }
 
 .article2{
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     background: white;
     width: 300px;
 }	
@@ -161,8 +163,8 @@ footer {
     background-color:#f2f2f2; ; /* Χρώμα φόντου του footer */
     text-align: center; /* Κείμενο στο κέντρο του footer */
     line-height: 100px; /* Κείμενο να είναι κατά μέσο ύψος του footer */
-	font-family: Arial /* Ορίζει τη γραμματοσειρά σε Arial */ 
-	font-style: italic; /* Κάνει το κείμενο πλάγιο */
-	font-size:1.5em
+	font-family: Arial, serif; /* Ορίζει τη γραμματοσειρά σε Arial */
+	/*font-style: italic; /* Κάνει το κείμενο πλάγιο */
+	font-size:1em
 }
 /* END CODE HERE */
