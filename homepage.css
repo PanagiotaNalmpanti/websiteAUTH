@@ -164,7 +164,6 @@ footer {
     text-align: center; /* Κείμενο στο κέντρο του footer */
     line-height: 100px; /* Κείμενο να είναι κατά μέσο ύψος του footer */
 	font-family: Arial, serif; /* Ορίζει τη γραμματοσειρά σε Arial */
-	/*font-style: italic; /* Κάνει το κείμενο πλάγιο */
 	font-size:1em
 }
 /* END CODE HERE */
