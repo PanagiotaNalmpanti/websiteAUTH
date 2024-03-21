@@ -1,6 +1,11 @@
 .logo {
     height: 58px;
     max-height: 250px;
+    margin-left: 100px;
+}
+
+.d-flex {
+    margin-right: 100px
 }
 
 #blueButton{
