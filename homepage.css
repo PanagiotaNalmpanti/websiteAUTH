@@ -1,69 +1,41 @@
 /* BEGIN CODE HERE */
 header {
-    font-family: Arial, serif;
-	overflow: hidden;
-	background-color: white;
-	height: 150px;
-	padding: 48px;
+    border-bottom: solid black 1px;
 }
 
-
-header img {
-	height: 58px;
-	width: 250px;
-    margin-left: 100px;
+.logo {
+    height: 58px;
+    max-height: 250px;
+    margin-left: 130px;
 }
 
-
-header a {
-	float: left;
-	/*color: blue;*/
-	text-align: center;
-	padding: 12px;
-	text-decoration: none;
-	font-size: 18px;
-	line-height: 25px;
-	border-radius: 4px;
+.d-flex {
+    margin-right: 130px;
+    font-size: 18px;
 }
 
-
-.book-button {
-	padding: 5px 10px;
-	border-radius: 10px;
-	border: none;
-	background-color: white; 
-	color: #0296f1
+#home, #products{
+    padding: 12px;
+    color: #0296f1;
+    border-radius: 10px;
+    margin: 5px;
 }
 
-.book-button:hover,
-.book-button:active {
-	background-color: #0296f1; /* Χρώμα κουμπιού όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
-	color: white; /* Χρώμα κειμένου όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
+#home {
+    color: white;
+    background-color: #0296f1;
 }
 
-.book-button a {
-	color: inherit; /* Κληρονόμηση χρώματος από τον παράγοντα .book-button */
-	text-decoration: none; /* Απενεργοποίηση υπογράμμισης για τον υπερσύνδεσμο */
+#home:hover, #home:active, #products:hover, #products:active {
+    background-color: #0296f1;
+    color: white;
 }
-
-.book-button a:hover,
-.book-button a:active {
-	color: white; /* Χρώμα υπερσυνδέσμου όταν το ποντίκι είναι πάνω ή το κουμπί πατιέται */
-}
-
-.header-right {
-	float: right;
-	display: flex;
-	align-items: center;
-    margin-right: 100px;
-}
-
 
 .container1 {
     display: flex;
-    flex-direction: column; /* Αλλαγή της κατεύθυνσης σε κατακόρυφη */
+    flex-direction: column;
     align-items: center;
-    height: auto;
+    margin-top: 30px;
 }
 
 .frame1 {
@@ -79,10 +51,8 @@ header a {
 }
 
 .article1 {
-    padding: 0;
-    margin: 0;
     background: white;
-    flex:  1 /* Παίρνει το μισό του πλάτους της γραμμής */
+    flex:  1;
 }	
 
 
@@ -159,11 +129,12 @@ iframe {
 }
 
 footer {
-    height: 100px; /* Ορίζει το ύψος του footer σε 100px */
-    background-color:#f2f2f2; ; /* Χρώμα φόντου του footer */
-    text-align: center; /* Κείμενο στο κέντρο του footer */
-    line-height: 100px; /* Κείμενο να είναι κατά μέσο ύψος του footer */
-	font-family: Arial, serif; /* Ορίζει τη γραμματοσειρά σε Arial */
-	font-size:1em
+    height: 100px;
+    background-color:#f2f2f2;
+    text-align: center;
+    line-height: 100px;
+	font-family: Arial, serif;
+	font-size:1em;
+    border-top: solid black 1px;
 }
 /* END CODE HERE */
