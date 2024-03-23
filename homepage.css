@@ -16,9 +16,12 @@ header {
 
 #home, #products{
     padding: 12px;
-    color: #0296f1;
     border-radius: 10px;
     margin: 5px;
+}
+
+#products{
+    color: #0296f1;
 }
 
 #home {

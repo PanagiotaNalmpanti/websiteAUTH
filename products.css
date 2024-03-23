@@ -1,3 +1,7 @@
+header {
+    border-bottom: solid black 1px;
+}
+
 .logo {
     height: 58px;
     max-height: 250px;
@@ -5,15 +9,28 @@
 }
 
 .d-flex {
-    margin-right: 130px
+    margin-right: 130px;
+    font-size: 18px;
 }
 
-#blueButton{
-    color:#0d6efd;
+#blueButton, #products {
+    padding: 12px;
+    border-radius: 10px;
+    margin: 5px;
 }
 
-.navbar{
-    background: #9fc4ff;
+#blueButton {
+    color: #0296f1;
+}
+
+#products{
+    color: white;
+    background-color: #0296f1;
+}
+
+#blueButton:hover, #blueButton:active, #products:hover, #products:active {
+    background-color: #0296f1;
+    color: white;
 }
 
 .container{
