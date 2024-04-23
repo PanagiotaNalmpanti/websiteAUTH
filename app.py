@@ -49,9 +49,37 @@ def search():
 
 @app.route("/add-product", methods=["POST"])
 def add_product():
-    # BEGIN CODE HERE
-    return ""
-    # END CODE HERE
+    product_data = request.json
+
+    # Έλεγχος για έγκυρο χρώμα
+    valid_colors = [1, 2, 3]
+    if "color" in product_data and product_data["color"] not in valid_colors:
+        return jsonify({"error": "Invalid color code"}), 400
+
+    # Έλεγχος για έγκυρο μέγεθος
+    valid_sizes = [1, 2, 3, 4]
+    if "size" in product_data and product_data["size"] not in valid_sizes:
+        return jsonify({"error": "Invalid size code"}), 400
+
+    existing_product = mongo.db.products.find_one({"name": product_data["name"]})
+    if existing_product:
+        # If product exists, update its details
+        mongo.db.products.update_one(
+            {"_id": existing_product["_id"]},
+            {
+                "$set": {
+                    "production_year": product_data["production_year"],
+                    "price": product_data["price"],
+                    "color": product_data["color"],
+                    "size": product_data["size"]
+                }
+            }
+        )
+        return "Product updated successfully", 200
+    else:
+        # If product doesn't exist, insert it
+        mongo.db.products.insert_one(product_data)
+        return "Product added successfully", 201
 
 
 @app.route("/content-based-filtering", methods=["POST"])
