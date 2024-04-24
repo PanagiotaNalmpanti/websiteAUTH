@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from pymongo import TEXT
+
 # END CODE HERE
 
 app = Flask(__name__)
@@ -16,7 +17,8 @@ mongo.db.products.create_index([("name", TEXT)])
 def search():
     name = request.args.get("name")
     if name:
-        products = mongo.db.products.find({"$text": {"$search": name}})  # search in mongoDB
+        # "$options": "i" makes the search case-insensitive
+        products = mongo.db.products.find({"name": {"$regex": name, "$options": "i"}})  # search in mongoDB
 
         if products.count() > 0:
             products = list(products)
@@ -42,9 +44,9 @@ def search():
             return jsonify(response)
 
         else:
-            return jsonify([]) # Return empty list if products not found
+            return jsonify([])  # Return empty list if products not found
     else:
-        return jsonify({"error": "Please use parameter 'name'."}), 400 # In case 'name' parameter is missing
+        return jsonify({"error": "Please use parameter 'name'."}), 400  # In case 'name' parameter is missing
 
 
 @app.route("/add-product", methods=["POST"])
