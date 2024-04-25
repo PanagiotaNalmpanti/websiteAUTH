@@ -86,9 +86,28 @@ def add_product():
 
 @app.route("/content-based-filtering", methods=["POST"])
 def content_based_filtering():
-    # BEGIN CODE HERE
-    return ""
-    # END CODE HERE
+    # calculate cosine similarity
+    def cosine_similarity(vec1, vec2):
+        dot_product = np.dot(vec1, vec2)
+        vec1 = np.linalg.norm(vec1)
+        vec2 = np.linalg.norm(vec2)
+        similarity = dot_product / (vec1 * vec2)
+        return similarity
+
+    product_data = request.json
+
+    # convert to numpy array
+    query_vec = np.array([product_data['production_year'], product_data['price'], product_data['color'], product_data['size']])
+
+    similar_products = []
+    # JSON
+    for product in mongo.db.products:
+        product_vec = np.array([product['production_year'], product['price'], product['color'], product['size']])
+        similar = cosine_similarity(query_vec, product_vec)
+        if similar > 0.7:
+            similar_products.append(product['name'])
+
+    return jsonify(similar_products)
 
 
 @app.route("/crawler", methods=["GET"])
