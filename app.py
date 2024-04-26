@@ -3,6 +3,8 @@ from flask import Flask, request, jsonify
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from pymongo import TEXT
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 # END CODE HERE
 
@@ -97,7 +99,8 @@ def content_based_filtering():
     product_data = request.json
 
     # convert to numpy array
-    query_vec = np.array([product_data['production_year'], product_data['price'], product_data['color'], product_data['size']])
+    query_vec = np.array(
+        [product_data['production_year'], product_data['price'], product_data['color'], product_data['size']])
 
     similar_products = []
     # JSON
@@ -113,5 +116,28 @@ def content_based_filtering():
 @app.route("/crawler", methods=["GET"])
 def crawler():
     # BEGIN CODE HERE
-    return ""
+    def get_courses(sem):
+        url = f'https://qa.auth.gr/el/x/studyguide/600000438/current'  # f optional (maybe)
+        driver = webdriver.Firefox()  # να το γενικοποιήσω για να τρέχει σε κάθε browser
+        driver.get(url)
+
+        # course_el consists of all the elements that exist in the table of the given exam
+        # the courses are in table rows (tr) inside the table body (tbody) inside a table
+        course_el = driver.find_element(By.CSS_SELECTOR, f'#exam{sem} tbody tr')
+        courses = []
+        for c in course_el:
+            courses.append(c.coursetitle)  # coursetitle gives the name of the course in the given url (html)
+
+        driver.close()
+        return courses
+
+    semester = request.args.get('semester', type=int)
+    if semester is not None:
+        course_list = get_courses(semester)
+        if course_list:
+            return jsonify(course_list), 200
+        else:
+            return jsonify({'error': f'Failed to get courses for semester {semester}'}), 404
+    else:
+        return jsonify({'error': 'Please use parameter "semester", or give a valid integer'}), 400
     # END CODE HERE
