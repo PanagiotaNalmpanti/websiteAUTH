@@ -15,7 +15,6 @@ searchButtonOnClick = () => {
 
     request.onreadystatechange = () => {
         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-
             const requestText = JSON.parse(request.responseText);
             const tableBody = document.getElementById("result-table");
 
@@ -53,11 +52,12 @@ searchButtonOnClick = () => {
 
                 tableBody.appendChild(row);
             });
-
-            request.send();
-            // END CODE HERE
         }
     }
+
+    // Send the request outside of the if block
+    request.send();
+    // END CODE HERE
 }
 
 productFormOnSubmit = (event) => {
