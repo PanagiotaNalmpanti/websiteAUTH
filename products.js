@@ -53,11 +53,12 @@ searchButtonOnClick = () => {
 
                 tableBody.appendChild(row);
             });
-
-            request.send();
-            // END CODE HERE
         }
     }
+            request.send();
+
+            // END CODE HERE
+
 }
 
 productFormOnSubmit = (event) => {
