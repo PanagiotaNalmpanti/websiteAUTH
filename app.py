@@ -21,11 +21,11 @@ def search():
     name = request.args.get("name")
     # "$options": "i" makes the search case-insensitive
     products = mongo.db.products.find({"name": {"$regex": name, "$options": "i"}}).sort("price", -1)
-    doc_list = list(products)
+    plist = list(products)
     # prevent an error caused by the id that MongoDB gives to the products
-    for item in doc_list:
+    for item in plist:
         item['_id'] = str(item['_id'])
-    return jsonify(doc_list)
+    return jsonify(plist)
 
 
 @app.route("/add-product", methods=["POST"])

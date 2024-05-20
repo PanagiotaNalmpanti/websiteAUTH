@@ -17,11 +17,13 @@ searchButtonOnClick = () => {
 
     request.onreadystatechange = () => {
         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+
             const requestText = JSON.parse(request.responseText);
             const tableBody = document.getElementById("result-table");
 
             // Clear previous results
             while (tableBody.rows.length > 1) {
+
                 tableBody.deleteRow(1);
             }
 
@@ -56,7 +58,7 @@ searchButtonOnClick = () => {
             });
         }
     };
-
+    getName.value = "";
     request.send();
     // END CODE HERE
 }
