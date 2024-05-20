@@ -5,6 +5,7 @@ from flask_cors import CORS
 from pymongo import TEXT
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import numpy as np
 
 # END CODE HERE
 
