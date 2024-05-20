@@ -87,6 +87,7 @@ saveButtonOnClick = () => {
          if (request.readyState === XMLHttpRequest.DONE && (request.status === 200 || request.status === 201)) {
              alert("OK");
              document.getElementById("productForm").reset();
+         }
     }
     request.send(JSON.stringify(product_data));
     // END CODE HERE
