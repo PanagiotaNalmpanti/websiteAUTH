@@ -18,37 +18,13 @@ mongo.db.products.create_index([("name", TEXT)])
 @app.route("/search", methods=["GET"])
 def search():
     name = request.args.get("name")
-    if name:
-        # "$options": "i" makes the search case-insensitive
-        products = mongo.db.products.find({"name": {"$regex": name, "$options": "i"}})  # search in mongoDB
-
-        if products.count() > 0:
-            products = list(products)
-
-            # Sorting the products in descending price order
-            n = len(products)
-            for i in range(n):
-                for j in range(0, n - i - 1):
-                    if products[j]['price'] < products[j + 1]['price']:
-                        products[j], products[j + 1] = products[j + 1], products[j]
-
-            # JSON
-            response = []
-            for product in products:
-                response.append({
-                    "id": str(product["_id"]),
-                    "name": product["name"],
-                    "production_year": product["production_year"],
-                    "price": product["price"],
-                    "color": product["color"],
-                    "size": product["size"]
-                })
-            return jsonify(response)
-
-        else:
-            return jsonify([])  # Return empty list if products not found
-    else:
-        return jsonify({"error": "Please use parameter 'name'."}), 400  # In case 'name' parameter is missing
+    # "$options": "i" makes the search case-insensitive
+    products = mongo.db.products.find({"name": {"$regex": name, "$options": "i"}}).sort("price", -1)
+    doc_list = list(products)
+    # prevent an error caused by the id that MongoDB gives to the products
+    for item in doc_list:
+        item['_id'] = str(item['_id'])
+    return jsonify(doc_list)
 
 
 @app.route("/add-product", methods=["POST"])
@@ -58,12 +34,12 @@ def add_product():
     # Έλεγχος για έγκυρο χρώμα
     valid_colors = [1, 2, 3]
     if "color" in product_data and product_data["color"] not in valid_colors:
-        return jsonify({"error": "Invalid color code"}), 400
+        return jsonify("Invalid color code"), 400
 
     # Έλεγχος για έγκυρο μέγεθος
     valid_sizes = [1, 2, 3, 4]
     if "size" in product_data and product_data["size"] not in valid_sizes:
-        return jsonify({"error": "Invalid size code"}), 400
+        return jsonify("Invalid size code"), 400
 
     existing_product = mongo.db.products.find_one({"name": product_data["name"]})
     if existing_product:
@@ -83,7 +59,7 @@ def add_product():
     else:
         # If product doesn't exist, insert it
         mongo.db.products.insert_one(product_data)
-        return "Product added successfully", 201
+        return "Product added successfully", 200
 
 
 @app.route("/content-based-filtering", methods=["POST"])

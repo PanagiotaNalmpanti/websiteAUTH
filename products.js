@@ -4,6 +4,8 @@ window.onload = () => {
     // BEGIN CODE HERE
     const searchBtn = document.getElementById("searchBtn");
     searchBtn.onclick = searchButtonOnClick;
+    const saveButton = document.getElementById("saveBtn");
+    saveButton.onclick = productFormOnSubmit;
     // END CODE HERE
 }
 
@@ -11,7 +13,7 @@ searchButtonOnClick = () => {
     // BEGIN CODE HERE
     const getName = document.getElementById("search-input");
     const request = new XMLHttpRequest();
-    request.open("GET", `${api}/search?name=${getName.value}`);
+    request.open("GET", `${api}/search?name=${getName.value}`,true);
 
     request.onreadystatechange = () => {
         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
@@ -53,15 +55,52 @@ searchButtonOnClick = () => {
                 tableBody.appendChild(row);
             });
         }
-    }
+    };
 
-    // Send the request outside of the if block
     request.send();
     // END CODE HERE
 }
 
-productFormOnSubmit = (event) => {
-    // BEGIN CODE HERE
+    productFormOnSubmit = (event) => {
+        // BEGIN CODE HERE
+        const getName = document.getElementById("name-input");
+        const getProductionYear = document.getElementById("prod-input");
+        const getPrice = document.getElementById("price-input");
+        const getColor = document.getElementById("color-input");
+        const getSize = document.getElementById("size-input");
+
+        if (getName.value !== "" && getProductionYear.value !== "" && getPrice.value !== "" && getColor.value !== "" && getSize.value !== "") {
+            const res = new XMLHttpRequest();
+            res.open("POST", `${api}/add-product`);
+            res.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            res.onreadystatechange = () => {
+                if (res.readyState == 4) {
+                    if (res.status == 200) {
+                        alert(res.responseText);
+                        // clear fields after successful update or addition
+                        getName.value = "";
+                        getProductionYear.value = "";
+                        getPrice.value = "";
+                        getColor.value = "";
+                        getSize.value = "";
+                    }
+                    else {
+                        alert(res.responseText);
+                    }
+                }
+            };
+
+            res.send(JSON.stringify({
+                "name": getName.value,
+                "production_year": parseInt(getProductionYear.value),
+                "price": parseInt(getPrice.value),
+                "color": parseInt(getColor.value),
+                "size": parseInt(getSize.value)
+            }));
+        }
+        else {
+            alert("Please fill in all fields");
+        }
 
     // END CODE HERE
 }
