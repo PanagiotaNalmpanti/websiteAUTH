@@ -94,18 +94,23 @@ def content_based_filtering():
 def crawler():
     # BEGIN CODE HERE
     def get_courses(sem):
-        url = f'https://qa.auth.gr/el/x/studyguide/600000438/current'  # f optional (maybe)
-        driver = webdriver.Firefox()  # να το γενικοποιήσω για να τρέχει σε κάθε browser
-        driver.get(url)
+        url = 'https://qa.auth.gr/el/x/studyguide/600000438/current'
+        options = Options()
+        options.headless = True
+        driver = webdriver.Chrome(options=options)
 
-        # course_el consists of all the elements that exist in the table of the given exam
-        # the courses are in table rows (tr) inside the table body (tbody) inside a table
-        course_el = driver.find_element(By.CSS_SELECTOR, f'#exam{sem} tbody tr')
-        courses = []
-        for c in course_el:
-            courses.append(c.coursetitle)  # coursetitle gives the name of the course in the given url (html)
-
-        driver.close()
+        try:
+            driver.get(url)
+            wait = WebDriverWait(driver, 10)
+            # course_el consists of all the elements that exist in the table of the given exam
+            table = wait.until(EC.presence_of_element_located((By.ID, f'exam{sem}')))
+            # the courses are in table rows (tr) inside the table body (tbody) inside a table
+            course_el = table.find_elements(By.TAG_NAME, 'tr')
+            courses = []
+            for c in course_el:
+                courses.append(c.get_attribute('coursetitle'))  # coursetitle gives the name of the course in the given url (html)
+        finally:
+            driver.quit()
         return courses
 
     semester = request.args.get('semester', type=int)
