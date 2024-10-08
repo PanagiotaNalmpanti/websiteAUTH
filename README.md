@@ -4,4 +4,4 @@ This project contains:
 * Development of a REST API
 * Development of a dynamic website
 
-[Part of the subject "World Wide Web Information Systems"]
+[Part of the course "World Wide Web Information Systems"]
