@@ -1,4 +1,4 @@
-**Website AUTH**
+**Website AUTH**\
 This project contains:
 * Development of a static website
 * Development of a REST API
